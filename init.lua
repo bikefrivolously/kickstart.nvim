@@ -99,10 +99,10 @@ vim.keymap.set('n', '<down>', '<cmd>echo "Use j to move!!"<CR>')
 --  Use CTRL+<hjkl> to switch between windows
 --
 --  See `:help wincmd` for a list of all window commands
-vim.keymap.set('n', '<C-h>', '<C-w><C-h>', { desc = 'Move focus to the left window' })
-vim.keymap.set('n', '<C-l>', '<C-w><C-l>', { desc = 'Move focus to the right window' })
-vim.keymap.set('n', '<C-j>', '<C-w><C-j>', { desc = 'Move focus to the lower window' })
-vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper window' })
+-- vim.keymap.set('n', '<C-h>', '<C-w><C-h>', { desc = 'Move focus to the left window' })
+-- vim.keymap.set('n', '<C-l>', '<C-w><C-l>', { desc = 'Move focus to the right window' })
+-- vim.keymap.set('n', '<C-j>', '<C-w><C-j>', { desc = 'Move focus to the lower window' })
+-- vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper window' })
 
 -- [[ Basic Autocommands ]]
 --  See `:help lua-guide-autocommands`
@@ -319,6 +319,24 @@ require('lazy').setup({
       vim.keymap.set('n', '<leader>sn', function()
         builtin.find_files { cwd = vim.fn.stdpath 'config' }
       end, { desc = '[S]earch [N]eovim files' })
+    end,
+  },
+
+  -- tmux navigation
+  {
+    'alexghergh/nvim-tmux-navigation',
+    config = function()
+      local tmux_nvim_nav = require 'nvim-tmux-navigation'
+      tmux_nvim_nav.setup {
+        disable_when_zoomed = true,
+      }
+
+      vim.keymap.set('n', '<C-h>', tmux_nvim_nav.NvimTmuxNavigateLeft)
+      vim.keymap.set('n', '<C-j>', tmux_nvim_nav.NvimTmuxNavigateDown)
+      vim.keymap.set('n', '<C-k>', tmux_nvim_nav.NvimTmuxNavigateUp)
+      vim.keymap.set('n', '<C-l>', tmux_nvim_nav.NvimTmuxNavigateRight)
+      vim.keymap.set('n', '<C-\\>', tmux_nvim_nav.NvimTmuxNavigateLastActive)
+      vim.keymap.set('n', '<C-Space>', tmux_nvim_nav.NvimTmuxNavigateNext)
     end,
   },
 
@@ -654,7 +672,7 @@ require('lazy').setup({
           -- Manually trigger a completion from nvim-cmp.
           --  Generally you don't need this, because nvim-cmp will display
           --  completions whenever it has completion options available.
-          ['<C-Space>'] = cmp.mapping.complete {},
+          -- ['<C-Space>'] = cmp.mapping.complete {},
 
           -- Think of <c-l> as moving to the right of your snippet expansion.
           --  So if you have a snippet that's like:
