@@ -547,6 +547,11 @@ require('lazy').setup({
             },
           },
         },
+        -- Python
+        black = {},
+        flake8 = {},
+        isort = {},
+        jedi_language_server = {},
       }
 
       -- Ensure the servers and tools above are installed
