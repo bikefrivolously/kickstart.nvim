@@ -552,6 +552,9 @@ require('lazy').setup({
         flake8 = {},
         isort = {},
         jedi_language_server = {},
+
+        -- Go
+        gopls = {},
       }
 
       -- Ensure the servers and tools above are installed
