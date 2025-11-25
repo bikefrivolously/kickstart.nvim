@@ -136,25 +136,6 @@ vim.api.nvim_create_autocmd('TextYankPost', {
   end,
 })
 
--- [[ Some setup for conditionally loading plugins based on the current hostname ]]
-local handle = io.popen 'hostname'
-local hostname = handle:read('*a'):gsub('%s+', '')
-handle:close()
-
-local work_hostnames = {
-  'JY94QGJF3H',
-  'BTT-XNQL2KWRWV',
-}
-
-local function enable_copilot(current_hostname)
-  for _, allowed_hostname in ipairs(work_hostnames) do
-    if allowed_hostname == current_hostname then
-      return true
-    end
-  end
-  return false
-end
-
 -- [[ Install `lazy.nvim` plugin manager ]]
 --    See `:help lazy.nvim.txt` or https://github.com/folke/lazy.nvim for more info
 local lazypath = vim.fn.stdpath 'data' .. '/lazy/lazy.nvim'
