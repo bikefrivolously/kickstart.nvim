@@ -635,10 +635,8 @@ require('lazy').setup({
           },
         },
         -- Python
-        black = {},
-        flake8 = {},
-        isort = {},
-        jedi_language_server = {},
+        zuban = {},
+        ruff = {},
 
         -- Go
         gopls = {},
